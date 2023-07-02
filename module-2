@@ -305,10 +305,28 @@ ANS=><!DOCTYPE html>
       </div>
     </div>
   </header>
+ <section class="text-image-section">
+    <div class="text">
+    <p>Landing</p>
+      <h2>Create must clicking landing page</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pretium, metus id facilisis sodales, mauris urna tincidunt enim, eu euismod orci metus eu purus.</p>
+     
+<button style="backgorund-color:yellow;border:1px solid black;border-radius:40%;">Read More</button>
+    </div>
+    <div class="image">
+      <img src="image.jpg" alt="Image">
+    </div>
+  </section>
+<div id="js-cookie-box" class="cookie-box cookie-box--hide">
+ Our website stores cookies on your device and discloses information in accordance with our Cookie Statement.Cookie Statement<span id="js-cookie-button" class="cookie-button">Customizes Settings</span>
+  <span id="js-cookie" class="cookie-butt">X</span>
+</div>
+
 </body>
 </html>
 
 CSS FILE
+
 #topbar{
 background-color:black;
 }
@@ -318,6 +336,43 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 10px;
+}
+.text-image-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.text {
+  flex: 0 0 50%;
+}
+
+.text h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.text p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.text a {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+}
+
+.image {
+  flex: 0 0 50%;
+}
+
+.image img {
+  max-width: 100%;
+  height: auto;
 }
 
 .left-menu ul {
@@ -367,3 +422,42 @@ header {
   cursor: pointer;
   margin-left: 5px;
 }
+
+
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0px;
+  bottom: 0;
+   color:white;
+  text-align: left;
+  padding-right:20%;
+  padding: 1rem 1rem ;
+  background: black;
+
+}
+
+.cookie-button {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0rem 0.85rem;
+  margin-left: 5rem;
+  color: white;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  border:1px solid white;
+  padding:10px 20px 10px 20px;
+ 
+}
+.cookie-butt
+{
+  color:white;
+  margin-left:25px;
+  margin-top:0%;
+ padding-top:50%;
+  font-size:25px;
+  margin-bottom:0px;
+}
+#############################################################################################
+Q=>Implement a CSS grid layout to display a gallery of images in a grid format for design refer the image shown below, replace the empty boxed with actual images
+ANS=>
