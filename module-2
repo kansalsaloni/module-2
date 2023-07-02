@@ -1,0 +1,369 @@
+Q Explain all the CSS positions(static, fixed, sticky, relative, absolute) with one code example each
+ANS=>
+1. Static:
+The default position value is "static." Elements with static positioning follow the normal flow of the document. They are not affected by the top, bottom, left, or right properties.
+
+Example:
+```css
+.static-box {
+  width: 200px;
+  height: 100px;
+  background-color: red;
+}
+```
+
+```html
+<div class="static-box">Static Box</div>
+```
+
+2. Fixed:
+Elements with fixed positioning are positioned relative to the viewport and do not move when the page is scrolled. They are often used for elements that need to stay in a specific position regardless of scrolling.
+
+Example:
+```css
+.fixed-box {
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  width: 200px;
+  height: 100px;
+  background-color: blue;
+}
+```
+
+```html
+<div class="fixed-box">Fixed Box</div>
+```
+
+3. Sticky:
+Sticky positioning is a mix between relative and fixed positioning. It behaves like relative positioning until a specified threshold is reached, then it becomes fixed positioning relative to the viewport.
+
+Example:
+```css
+.sticky-box {
+  position: sticky;
+  top: 50px;
+  width: 200px;
+  height: 100px;
+  background-color: green;
+}
+```
+
+```html
+<div class="sticky-box">Sticky Box</div>
+```
+
+4. Relative:
+Elements with relative positioning are positioned relative to their normal position in the document flow. They can be shifted using the top, bottom, left, and right properties.
+
+Example:
+```css
+.relative-box {
+  position: relative;
+  top: 20px;
+  left: 30px;
+  width: 200px;
+  height: 100px;
+  background-color: yellow;
+}
+```
+
+```html
+<div class="relative-box">Relative Box</div>
+```
+
+5. Absolute:
+Elements with absolute positioning are positioned relative to the nearest positioned ancestor (an ancestor element with a position value other than static) or to the initial containing block if no positioned ancestor is found. They are removed from the normal document flow.
+
+Example:
+```css
+.absolute-box {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 200px;
+  height: 100px;
+  background-color: purple;
+}
+```
+
+```html
+<div class="absolute-box">Absolute Box</div>
+```
+
+These examples demonstrate the basic usage and behavior of each CSS position. Keep in mind that the actual appearance and behavior can vary depending on other CSS properties, HTML structure, and the presence of other elements on the page.
+#####################################################################################################################################################################
+Q=> Create a form with basic validation (name, email, phone number, password, age, gender, date, color picker)
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form with Basic Validation</title>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+  <script>
+    function validateForm() {
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var phone = document.getElementById("phone").value;
+      var password = document.getElementById("password").value;
+      var age = document.getElementById("age").value;
+      var gender = document.getElementById("gender").value;
+      var date = document.getElementById("date").value;
+      var color = document.getElementById("color").value;
+      
+      var errorMessages = [];
+      
+      if (name === "") {
+        errorMessages.push("Name is required");
+      }
+      
+      if (email === "") {
+        errorMessages.push("Email is required");
+      } else if (!validateEmail(email)) {
+        errorMessages.push("Invalid email format");
+      }
+      
+      if (phone === "") {
+        errorMessages.push("Phone number is required");
+      } else if (!validatePhoneNumber(phone)) {
+        errorMessages.push("Invalid phone number format");
+      }
+      
+      if (password === "") {
+        errorMessages.push("Password is required");
+      } else if (password.length < 6) {
+        errorMessages.push("Password should be at least 6 characters long");
+      }
+      
+      if (age === "") {
+        errorMessages.push("Age is required");
+      } else if (isNaN(age) || parseInt(age) <= 0) {
+        errorMessages.push("Invalid age");
+      }
+      
+      if (gender === "") {
+        errorMessages.push("Gender is required");
+      }
+      
+      if (date === "") {
+        errorMessages.push("Date is required");
+      }
+      
+      if (color === "") {
+        errorMessages.push("Color is required");
+      }
+      
+      if (errorMessages.length > 0) {
+        var errorContainer = document.getElementById("error-container");
+        errorContainer.innerHTML = "";
+        for (var i = 0; i < errorMessages.length; i++) {
+          var errorElement = document.createElement("p");
+          errorElement.textContent = errorMessages[i];
+          errorContainer.appendChild(errorElement);
+        }
+        return false;
+      }
+      
+      return true;
+    }
+    
+    function validateEmail(email) {
+      var emailRegex = /\S+@\S+\.\S+/;
+      return emailRegex.test(email);
+    }
+    
+    function validatePhoneNumber(phone) {
+      var phoneRegex = /^\d{10}$/;
+      return phoneRegex.test(phone);
+    }
+  </script>
+</head>
+<body>
+  <h1>Form with Basic Validation</h1>
+  <div id="error-container"></div>
+  <form onsubmit="return validateForm()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required><br>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" required><br>
+    
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" required><br>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" required><br>
+    
+    <label for="age">Age:</label>
+    <input type="number" id="age" required><br>
+    
+    <label for="gender">Gender:</label>
+    <select id="gender" required>
+      <option value="">Select Gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select><br>
+    
+    <label for="date">Date:</label>
+    <input type="date" id="date" required><br>
+    
+    <label for="color">Favorite Color:</label>
+    <input type="color" id="color" required><br>
+    
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
+#####################################################################################################################################################################
+Q3Explain what is execution context in detail with diagram
+Execution context is a fundamental concept in JavaScript that defines the environment in which JavaScript code is executed. It contains all the necessary information and resources for a piece of code to be executed.
+
+When JavaScript code is executed, it runs within an execution context. Each execution context has three main components: the Variable Environment, the Lexical Environment, and the This Binding. These components work together to provide the context for code execution and determine how variables, functions, and the "this" keyword are accessed and used.
+
+1. Variable Environment:
+The Variable Environment contains all the variables and function declarations within the current execution context. It includes function arguments, function declarations, variable declarations, and any other variables defined within the context. The Variable Environment is used to store and access variables and functions during the code execution.
+
+2. Lexical Environment:
+The Lexical Environment is similar to the Variable Environment but also includes the outer environment reference. It holds all the variables, functions, and the outer environment reference of the current execution context. The outer environment reference points to the Lexical Environment of the parent scope. This allows for lexical scoping and the ability to access variables from outer scopes.
+
+3. This Binding:
+The This Binding refers to the value of the "this" keyword within the current execution context. It represents the context in which a function is called and provides access to the object that the function is a method of or the global object (window in the browser) if the function is not a method of any object.
+
+Diagram:
+Here's a simplified diagram to illustrate the relationship between these components:
+
+```
++---------------------------+
+|                           |
+|   Execution Context       |
+|                           |
+|   +-------------------+   |
+|   |  Variable Env.    |   |
+|   |                   |   |
+|   +-------------------+   |
+|   |  Lexical Env.     |   |
+|   |                   |   |
+|   +-------------------+   |
+|   |  This Binding     |   |
+|   |                   |   |
+|   +-------------------+   |
+|                           |
++---------------------------+
+```
+
+In this diagram, the Execution Context contains the Variable Environment, the Lexical Environment, and the This Binding. These components work together to provide the necessary context for executing JavaScript code.
+
+It's important to note that multiple execution contexts can exist at the same time, forming a stack called the Execution Context Stack or Call Stack. The stack keeps track of the order in which execution contexts are entered and exited. When a function is called, a new execution context is created and pushed onto the stack. When the function completes, its execution context is popped from the stack, and control returns to the previous execution context.
+
+Understanding execution contexts is crucial for understanding variable scoping, function invocation, closures, and how JavaScript code is executed in different contexts.
+################################################################################################################################################
+QCreate a similar looking website shown in the image
+ANS=><!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+</head>
+<body>
+<div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex justify-content-center">
+      <div class="contact-info d-flex align-items-center">
+       <p>
+         Save 75% for 12 months - limited time offer. Get started today</p>
+      
+      </div>
+    </div>
+  </div>
+ <header>
+    <nav class="left-menu">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="logo">
+      <img src="company-logo.png" alt="Company Logo">
+    </div>
+    <div class="right-section">
+      <form class="search-form">
+        <input type="text" placeholder="Search...">
+        <button type="submit">Search</button>
+      </form>
+      <div class="login-buttons">
+        <button>Login</button>
+        <button>Signup</button>
+      </div>
+    </div>
+  </header>
+</body>
+</html>
+
+CSS FILE
+#topbar{
+background-color:black;
+}
+header {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.left-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.left-menu ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.left-menu ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+.logo img {
+  max-width: 200px;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.search-form input[type="text"] {
+  padding: 5px;
+  width: 200px;
+}
+
+.search-form button {
+  padding: 5px 10px;
+  background-color: yellow;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.login-buttons button {
+  padding: 5px 10px;
+  background-color: yellow;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+}
